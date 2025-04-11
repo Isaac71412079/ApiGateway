@@ -19,6 +19,14 @@ public class ApigatewayApplication {
 				.route(p -> p
 						.path("/all")
 						.uri("http://ms-product:9090"))
+				.route(p -> p
+						.path("/todosmisproductos")
+						.filters(f -> f.rewritePath("/todosmisproductos", "/all"))
+						.uri("http://ms-product:9090"))
+				.route(p -> p
+						.path("/get")
+						.filters(f -> f.addRequestHeader("Hello", "World"))
+						.uri("http://httpbin.org:80"))
 				.build();
 	}
 }
